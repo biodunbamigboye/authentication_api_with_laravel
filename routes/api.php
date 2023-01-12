@@ -20,6 +20,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('user', [AuthController::class, 'user'])->name('user');
+    Route::apiResource('users', \App\Http\Controllers\UserController::class)->except(['store', 'update']);
     Route::apiResource('sales-requests', \App\Http\Controllers\SalesRequestController::class);
     Route::apiResource('payments', \App\Http\Controllers\PaymentController::class)->except(['update', 'destroy']);
     Route::apiResource('locations', \App\Http\Controllers\LocationController::class);
