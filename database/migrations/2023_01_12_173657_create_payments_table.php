@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('currency')->default('USD');
             $table->string('payment_method')->default('card');
             $table->string('payment_provider')->default('stripe');
-            $table->string('status');
+            $table->enum('status', ['pending', 'paid', 'failed'])->default('pending');
             $table->timestamps();
         });
     }
