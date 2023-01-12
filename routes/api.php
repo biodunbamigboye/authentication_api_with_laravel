@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('user', [AuthController::class, 'user'])->name('user');
     Route::apiResource('sales-requests', \App\Http\Controllers\SalesRequestController::class);
+    Route::apiResource('payments', \App\Http\Controllers\PaymentController::class)->except(['update', 'destroy']);
 });

@@ -6,6 +6,7 @@ use App\Models\Payment;
 use App\Services\PaymentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class PaymentController extends Controller
 {
@@ -25,7 +26,7 @@ class PaymentController extends Controller
     {
         $payment = $this->paymentService->create($request->all());
 
-        return $this->response($payment, __('messages.record_created'));
+        return $this->response($payment, __('messages.record_created'), Response::HTTP_CREATED);
     }
 
     public function show(Payment $payment): JsonResponse
