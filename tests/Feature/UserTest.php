@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
@@ -28,7 +26,6 @@ class UserTest extends TestCase
 
         User::factory()->count(5)->create();
         User::factory()->count(5)->create(['is_merchant' => true]);
-
 
         $response = $this->getJson('/api/users?is_merchant=1');
 
