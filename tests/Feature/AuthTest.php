@@ -2,14 +2,12 @@
 
 namespace Tests\Feature;
 
-
-use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Http\Response;
+use Tests\TestCase;
 
 class AuthTest extends TestCase
 {
-
     public function testUserCanRegisterSuccessfully()
     {
         $response = $this->postJson(route('register'), [

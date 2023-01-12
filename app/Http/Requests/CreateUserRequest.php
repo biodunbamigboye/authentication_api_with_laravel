@@ -8,7 +8,6 @@ use Illuminate\Validation\Rules\Password;
 
 class CreateUserRequest extends FormRequest
 {
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -19,7 +18,7 @@ class CreateUserRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()]
+            'password' => ['required', 'confirmed', Password::min(8)->mixedCase()],
         ];
     }
 }

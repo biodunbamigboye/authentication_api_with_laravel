@@ -25,7 +25,7 @@ class CreateSalesRequestRequest extends FormRequest
     {
         return [
             'price' => ['float', 'required'],
-            'description' => ['required', 'string']
+            'description' => ['required', 'string'],
         ];
     }
 }

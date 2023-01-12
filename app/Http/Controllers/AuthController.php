@@ -16,13 +16,13 @@ class AuthController extends Controller
 
     public function login(Request $request): JsonResponse
     {
-        if (!$this->authService->login($request->email, $request->password)) {
+        if (! $this->authService->login($request->email, $request->password)) {
             return $this->reject(null, __('auth.failed'));
         }
 
         return $this->response([
             'access_token' => $this->authService->generateToken(),
-            'user' => auth()->user()
+            'user' => auth()->user(),
         ], __('auth.login_successful'));
     }
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         return $this->response([
             'access_token' => $this->authService->generateToken(),
-            'user' => auth()->user()
+            'user' => auth()->user(),
         ], __('auth.registration_successful'), Response::HTTP_CREATED);
     }
 

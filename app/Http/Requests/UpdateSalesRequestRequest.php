@@ -25,7 +25,7 @@ class UpdateSalesRequestRequest extends FormRequest
     {
         return [
             'price' => ['sometimes', 'float'],
-            'description' => ['sometimes', 'string']
+            'description' => ['sometimes', 'string'],
         ];
     }
 }

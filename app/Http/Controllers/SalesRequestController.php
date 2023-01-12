@@ -7,13 +7,13 @@ use App\Http\Requests\UpdateSalesRequestRequest;
 use App\Models\SalesRequest;
 use App\Services\SalesRequestService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class SalesRequestController extends Controller
 {
     public function __construct(private readonly SalesRequestService $salesRequestService)
-    {}
+    {
+    }
 
     public function index(): JsonResponse
     {
@@ -22,7 +22,7 @@ class SalesRequestController extends Controller
         return $this->response($salesRequests, __('messages.records_fetched'));
     }
 
-    public  function store(CreateSalesRequestRequest $request): JsonResponse
+    public function store(CreateSalesRequestRequest $request): JsonResponse
     {
         $salesRequest = $this->salesRequestService->create(
             price: $request->price,
@@ -32,7 +32,7 @@ class SalesRequestController extends Controller
         return $this->response($salesRequest, __('messages.record_created'), Response::HTTP_CREATED);
     }
 
-    public function update(UpdateSalesRequestRequest $request, SalesRequest $salesRequest):JsonResponse
+    public function update(UpdateSalesRequestRequest $request, SalesRequest $salesRequest): JsonResponse
     {
         $this->authorize('update', $salesRequest);
 

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
-
     public function login(string $email, string $password): bool
     {
         return auth()->attempt([

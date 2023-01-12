@@ -33,8 +33,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
         'is_merchant' => 'boolean',
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
     ];
-
-
 }
