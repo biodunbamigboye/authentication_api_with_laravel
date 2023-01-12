@@ -28,7 +28,7 @@ class LocationService
     {
         $query = Location::query();
 
-        if (!auth()->user()->is_admin) {
+        if (! auth()->user()->is_admin) {
             $query->where('user_id', auth()->id());
         }
 

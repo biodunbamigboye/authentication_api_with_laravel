@@ -25,5 +25,3 @@ class LocationPolicy
         return  $user->id === $location->user_id;
     }
 }
-
-}
