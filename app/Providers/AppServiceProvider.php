@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,8 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Model::shouldBeStrict();
-
-        Relation::enforceMorphMap([]);
 
         Gate::before(function (User $user) {
             if ($user->is_admin) {

@@ -16,13 +16,13 @@ class AuthController extends Controller
 
     public function login(Request $request): JsonResponse
     {
-        if (!$this->authService->login($request->email, $request->password)) {
+        if (! $this->authService->login($request->email, $request->password)) {
             return $this->reject(null, __('auth.failed'));
         }
 
         return $this->response([
-            'token' => $this->authService->generateToken(),
-            'user' => auth()->user()
+            'access_token' => $this->authService->generateToken(),
+            'user' => auth()->user(),
         ], __('auth.login_successful'));
     }
 
@@ -37,13 +37,20 @@ class AuthController extends Controller
         $this->authService->autoLogin($user);
 
         return $this->response([
-            'token' => $this->authService->generateToken(),
-            'user' => auth()->user()
+            'access_token' => $this->authService->generateToken(),
+            'user' => auth()->user(),
         ], __('auth.registration_successful'), Response::HTTP_CREATED);
     }
 
     public function user(): JsonResponse
     {
         return $this->response(auth()->user(), __('auth.user'));
+    }
+
+    public function logout(): JsonResponse
+    {
+        $this->authService->logout();
+
+        return $this->response(null, __('auth.logout_successful'));
     }
 }

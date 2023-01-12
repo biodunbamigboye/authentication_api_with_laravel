@@ -33,8 +33,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
         'is_merchant' => 'boolean',
-        'is_active' => 'boolean'
+        'is_active' => 'boolean',
     ];
 
+    public function salesRequests()
+    {
+        return $this->hasMany(SalesRequest::class);
+    }
 
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
+    }
 }

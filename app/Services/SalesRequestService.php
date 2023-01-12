@@ -8,7 +8,6 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class SalesRequestService
 {
-
     public function getAll(): LengthAwarePaginator
     {
         $query = SalesRequest::query();
@@ -16,7 +15,7 @@ class SalesRequestService
         /** @var User $user */
         $user = auth()->user();
 
-        if(!$user->is_admin){
+        if (! $user->is_admin) {
             $query->where('user_id', $user->id);
         }
 
@@ -26,8 +25,8 @@ class SalesRequestService
     public function create(float $price, string $description): SalesRequest
     {
         return SalesRequest::create([
-           'price' => $price,
-            'description' => $description
+            'price' => $price,
+            'description' => $description,
         ]);
     }
 
@@ -38,4 +37,8 @@ class SalesRequestService
         return $request->fresh();
     }
 
+    public function delete(SalesRequest $request): bool
+    {
+        return $request->delete();
+    }
 }

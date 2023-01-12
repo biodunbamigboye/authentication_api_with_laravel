@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\SalesRequest;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sales_requests', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->float('price');
-            $table->text('description');
-            $table->enum('status', SalesRequest::statuses())->default(SalesRequest::STATUS_PENDING);
+            $table->foreignIdFor(\App\Models\User::class);
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales_requests');
+        Schema::dropIfExists('locations');
     }
 };

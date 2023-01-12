@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
-
     public function login(string $email, string $password): bool
     {
         return auth()->attempt([
@@ -35,5 +34,10 @@ class AuthService
         $user = $user ?? auth()->user();
 
         return $user->createToken('auth_token')->plainTextToken;
+    }
+
+    public function logout(): void
+    {
+        auth()->user()->tokens()->delete();
     }
 }

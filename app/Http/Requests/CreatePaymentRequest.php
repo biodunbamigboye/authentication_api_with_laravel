@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateSalesRequestRequest extends FormRequest
+class CreatePaymentRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,8 +14,8 @@ class CreateSalesRequestRequest extends FormRequest
     public function rules()
     {
         return [
-            'price' => ['decimal:2', 'required'],
-            'description' => ['required', 'string'],
+            'amount' => 'required|numeric',
+            'reference' => 'required|string',
         ];
     }
 }
