@@ -19,5 +19,6 @@ return [
     'login_successful' => 'Login Successful',
     'registration_successful' => 'Registration Successful',
     'user' => 'Authenticated User Data retrieved Successfully',
+    'logout_successful' => 'Logout Successful',
 
 ];

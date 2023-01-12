@@ -29,8 +29,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::shouldBeStrict();
 
-        Relation::enforceMorphMap([]);
-
         Gate::before(function (User $user) {
             if ($user->is_admin) {
                 return true;

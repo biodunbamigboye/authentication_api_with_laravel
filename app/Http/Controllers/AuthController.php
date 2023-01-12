@@ -21,7 +21,7 @@ class AuthController extends Controller
         }
 
         return $this->response([
-            'token' => $this->authService->generateToken(),
+            'access_token' => $this->authService->generateToken(),
             'user' => auth()->user()
         ], __('auth.login_successful'));
     }
@@ -37,7 +37,7 @@ class AuthController extends Controller
         $this->authService->autoLogin($user);
 
         return $this->response([
-            'token' => $this->authService->generateToken(),
+            'access_token' => $this->authService->generateToken(),
             'user' => auth()->user()
         ], __('auth.registration_successful'), Response::HTTP_CREATED);
     }
@@ -45,5 +45,12 @@ class AuthController extends Controller
     public function user(): JsonResponse
     {
         return $this->response(auth()->user(), __('auth.user'));
+    }
+
+    public function logout(): JsonResponse
+    {
+        $this->authService->logout();
+
+        return $this->response(null, __('auth.logout_successful'));
     }
 }
