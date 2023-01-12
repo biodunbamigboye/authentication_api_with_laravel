@@ -15,7 +15,7 @@ class SalesRequestService
         /** @var User $user */
         $user = auth()->user();
 
-        if (! $user->is_admin) {
+        if (!$user->is_admin) {
             $query->where('user_id', $user->id);
         }
 
@@ -35,5 +35,10 @@ class SalesRequestService
         $request->update($payload);
 
         return $request->fresh();
+    }
+
+    public function delete(SalesRequest $request): bool
+    {
+        return $request->delete();
     }
 }

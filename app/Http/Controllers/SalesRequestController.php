@@ -48,8 +48,12 @@ class SalesRequestController extends Controller
         return $this->response($salesRequest, __('messages.record_fetched'));
     }
 
-    public function destroy(SaleRequest $salesRequest): JsonResponse
+    public function destroy(SalesRequest $salesRequest): JsonResponse
     {
         $this->authorize('delete', $salesRequest);
+
+        $deleted = $this->salesRequestService->delete($salesRequest);
+
+        return $this->response($deleted, __('messages.record_deleted'));
     }
 }
