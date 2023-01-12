@@ -15,7 +15,7 @@ class SalesRequestService
         /** @var User $user */
         $user = auth()->user();
 
-        if (!$user->is_admin) {
+        if (! $user->is_admin) {
             $query->where('user_id', $user->id);
         }
 

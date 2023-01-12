@@ -40,9 +40,8 @@ class SalesRequest extends Model
             if (
                 $model->isDirty(['price', 'description']) &&
                 $model->status !== self::STATUS_PENDING &&
-                !auth()->user()->is_admin
+                ! auth()->user()->is_admin
             ) {
-
                 throw new UnprocessableEntityHttpException(__('You can only update the status of a sales request that is pending.'));
             }
         });
