@@ -35,4 +35,9 @@ class User extends Authenticatable
         'is_merchant' => 'boolean',
         'is_active' => 'boolean',
     ];
+
+    public function salesRequests()
+    {
+        return $this->hasMany(SalesRequest::class);
+    }
 }

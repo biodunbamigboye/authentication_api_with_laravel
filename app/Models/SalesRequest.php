@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class SalesRequest extends Model
 {
@@ -33,6 +34,17 @@ class SalesRequest extends Model
     {
         static::creating(function (SalesRequest $model) {
             $model->user_id = auth()->id();
+        });
+
+        static::updating(function (SalesRequest $model) {
+            if (
+                $model->isDirty(['price', 'description']) &&
+                $model->status !== self::STATUS_PENDING &&
+                !auth()->user()->is_admin
+            ) {
+
+                throw new UnprocessableEntityHttpException(__('You can only update the status of a sales request that is pending.'));
+            }
         });
     }
 }
