@@ -11,5 +11,4 @@
 <li>Laravel Version: 9.47.0</li>
 <li>Database: Mysql</li>
 <li>ORM: Eloquent</li>
-<li>CI/CD : Github Action</li>
 </ul>
